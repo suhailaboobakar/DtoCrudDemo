@@ -1,6 +1,9 @@
 package com.example.CrudDtoDemo.controller;
 
-import com.example.CrudDtoDemo.entity.Student;
+import com.example.CrudDtoDemo.dto.CreateStudentRequestDto;
+import com.example.CrudDtoDemo.dto.CreateStudentResponseDto;
+import com.example.CrudDtoDemo.dto.UpdateStudentRequestDto;
+import com.example.CrudDtoDemo.dto.UpdateStudentResponseDto;
 import com.example.CrudDtoDemo.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +22,8 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Student> create(@RequestBody Student student) {
-        Student studentResp = studentService.createStudent(student);
+    public ResponseEntity<CreateStudentResponseDto> create(@RequestBody CreateStudentRequestDto studentRequestDto) {
+        CreateStudentResponseDto studentResp = studentService.createStudent(studentRequestDto);
 
         if (studentResp == null) {
             return null;
@@ -30,8 +33,8 @@ public class StudentController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Student> getStudent(@RequestParam Long id){
-        Student studentResp = studentService.getStudentById(id);
+    public ResponseEntity<CreateStudentResponseDto> getStudent(@RequestParam Long id){
+        CreateStudentResponseDto studentResp = studentService.getStudentById(id);
 
         if (studentResp == null) {
             return ResponseEntity
@@ -45,8 +48,8 @@ public class StudentController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Student>> getAllStudent() {
-        List<Student> studentResp = studentService.getAllStudent();
+    public ResponseEntity<List<CreateStudentResponseDto>> getAllStudent() {
+        List<CreateStudentResponseDto> studentResp = studentService.getAllStudent();
 
         if (studentResp == null) {
             return ResponseEntity
@@ -61,8 +64,8 @@ public class StudentController {
 
 
     @PutMapping("/update")
-    public ResponseEntity<Student> updateStudent(@RequestParam Long id , @RequestBody Student req){
-        Student studentResp = studentService.updateStudent(id , req);
+    public ResponseEntity<UpdateStudentResponseDto> updateStudent(@RequestParam Long id , @RequestBody UpdateStudentRequestDto req){
+        UpdateStudentResponseDto studentResp = studentService.updateStudent(id , req);
 
         if (studentResp == null) {
             return ResponseEntity
