@@ -5,6 +5,7 @@ import com.example.CrudDtoDemo.dto.CreateStudentResponseDto;
 import com.example.CrudDtoDemo.dto.UpdateStudentRequestDto;
 import com.example.CrudDtoDemo.dto.UpdateStudentResponseDto;
 import com.example.CrudDtoDemo.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<CreateStudentResponseDto> create(@RequestBody CreateStudentRequestDto studentRequestDto) {
+    public ResponseEntity<CreateStudentResponseDto> create(@Valid @RequestBody CreateStudentRequestDto studentRequestDto) {
         CreateStudentResponseDto studentResp = studentService.createStudent(studentRequestDto);
 
         if (studentResp == null) {
@@ -64,7 +65,7 @@ public class StudentController {
 
 
     @PutMapping("/update")
-    public ResponseEntity<UpdateStudentResponseDto> updateStudent(@RequestParam Long id , @RequestBody UpdateStudentRequestDto req){
+    public ResponseEntity<UpdateStudentResponseDto> updateStudent(@RequestParam Long id , @Valid @RequestBody UpdateStudentRequestDto req){
         UpdateStudentResponseDto studentResp = studentService.updateStudent(id , req);
 
         if (studentResp == null) {
